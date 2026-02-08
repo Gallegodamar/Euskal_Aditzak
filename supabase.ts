@@ -1,8 +1,10 @@
+import { createClient } from "@supabase/supabase-js";
 
-import { createClient } from '@supabase/supabase-js';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
 
-// Asumimos que estas variables están disponibles en el entorno
-const supabaseUrl = (window as any)._env_?.SUPABASE_URL || 'https://your-project.supabase.co';
-const supabaseAnonKey = (window as any)._env_?.SUPABASE_ANON_KEY || 'your-anon-key';
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error("Faltan VITE_SUPABASE_URL o VITE_SUPABASE_ANON_KEY en las variables de entorno.");
+}
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
