@@ -1,6 +1,8 @@
-import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = "https://gkkknbnvobkwiashsrlk.supabase.co";
-const supabaseAnonKey = "sb_publishable_tZgfI4lfHqzqlXaDdH047A_cjrirvQc";
+import { createClient } from '@supabase/supabase-js';
+
+// Asumimos que estas variables están disponibles en el entorno
+const supabaseUrl = (window as any)._env_?.SUPABASE_URL || 'https://your-project.supabase.co';
+const supabaseAnonKey = (window as any)._env_?.SUPABASE_ANON_KEY || 'your-anon-key';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
